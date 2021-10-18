@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="assets/js/script.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Slider</title>
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <script>
+        window.onload = function() {
+            let slides = [
+                {
+                    title: "Starbucks",
+                    background: "assets/img/starbucks1.png",
+                    link: "https://www.starbucks.com/"
+                }, {
+                    title: "Menu",
+                    background: "assets/img/starbucks2.png",
+                    link: "https://www.starbucks.com/menu"
+                },
+                {
+                    title: "Rewards",
+                    background: "assets/img/starbucks3.png",
+                    link: "https://www.starbucks.com/rewards"
+                }
+            ]
+            Slider.initSlider(slides);
+        };
+    </script>
+</head>
+<body>
+<header class="header"><p>Starbucks</p></header>
+<img style="position:absolute; margin-left: 1275px; left:10px;top:10px;" src="assets/img/header.png" alt="а" width="52" height="52">
+<div class="container">
+    <main class="center column">
+        <article>
+            <h1>Slider</h1>
+            <p>
+            <div id="slider"></div>
+            <input id="butt1" class="buttons" type="button" value="Prev"/>
+            <input id="butt2" class="buttons" type="button" value="Next"/>
+            <input id="butt3" class="buttons" type="button" value="Hide"/>
+            <input id="butt4" class="buttons" type="button" value="Start"/>
+
+            <script>
+                position = 0;
+
+                function handler1() {
+                    Slider.prevSlide();
+                }
+                function handler2() {
+                    Slider.nextSlide();
+                }
+                function handler3(){
+                    if (position % 2 === 0) {
+                        document.getElementById("slider").style.display = "none";
+                        butt3.value = "Show";
+                    }
+                    else {
+                        document.getElementById("slider").style.display = 'block';
+                        butt3.value = "Hide";
+                    }
+                    position++;
+                }
+
+                butt1.addEventListener("click", handler1);
+                butt2.addEventListener("click", handler2);
+                butt3.addEventListener("click", handler3);
+                butt4.addEventListener('click', (event)=>{
+                    if (event.target.classList.contains('start')){
+                        event.target.innerHTML = 'Stop';
+                        butt4.value = 'Start';
+                        clearInterval(interval)
+                    } else {
+                        event.target.innerHTML = 'Start';
+                        butt4.value = 'Stop';
+                        interval = setInterval(()=>{
+                            Slider.nextSlide();
+                        },1000)
+                    }
+                    event.target.classList.toggle('start')
+                })
+
+                for (let h in document.getElementsByClassName("buttons1")) {
+                    h.addEventListener("click", ()=> {
+                        Slider.setSlide(i);
+                    })
+                }
+
+            </script>
+            </p> </p>
+        </article>
+    </main>
+    <nav class="left column">
+        <h3></h3>
+        <ul>
+            <li><a href="index.html">Return to main page</a></li>
+        </ul>
+        <h3></h3>
+        <ul>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <h3></h3>
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <h3></h3>
+        <ul>
+            <li><a href="slider.html">Slider</a></li>
+        </ul>
+        <h3></h3>
+        <ul>
+            <li><a href="media.html">Media</a></li>
+        </ul>
+        <h3></h3>
+        <ul>
+            <li><a href="table.html">Table</a></li>
+        </ul>
+
+    </nav>
+    <div class="right column">
+        <h3>Right heading</h3>
+        <p></p>
+    </div>
+    <div class="push"></div>
+
+</div>
+<div class="footer-wrapper">
+    <footer class="footer"><p>Starbucks, by EpsonPride</p></footer>
+    <img style="position:absolute; margin-left: 1275px; left:10px;top:10px;" src="assets/img/header.png" alt="а" width="52" height="52">
+</div>
+</body>
+</html>
